@@ -32,12 +32,12 @@ public class PlayerController : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
         //turn off our win panel
-        winPanel.SetActive(false);
+        //winPanel.SetActive(false);
         //turn on our in game pannel
         inGamePanel.SetActive(true);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (wonGame == true)
             return;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
         //Add force to the rigidbody based on our movement vector
-        rb.AddForce(movement * speed);
+        rb.AddForce(movement * speed * Time.deltaTime);
 
         //Get TimerText to show time
         timerText.text = "Time: " + timer.GetTime().ToString("F3");
