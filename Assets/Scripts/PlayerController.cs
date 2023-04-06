@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         //Get the Rigidbidy component of the gameObject
         rb = GetComponent<Rigidbody>();
         //Get the number of pickups in our scene
