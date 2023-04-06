@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text pickupText;
 
+    GameObject resetPoint;
+    bool resetting = false;
+    Color originalColor;
+
     void Start()
     {
         //Get the Rigidbidy component of the gameObject
@@ -35,10 +39,16 @@ public class PlayerController : MonoBehaviour
         //winPanel.SetActive(false);
         //turn on our in game pannel
         inGamePanel.SetActive(true);
+
+        resetPoint = GameObject.Find("Reset Point");
+        originalColor = GetComponent<Renderer>().material.color;
     }
 
     void LateUpdate()
     {
+        if (resetting)
+            return;
+
         if (wonGame == true)
             return;
 
@@ -55,6 +65,33 @@ public class PlayerController : MonoBehaviour
 
         //Get TimerText to show time
         timerText.text = "Time: " + timer.GetTime().ToString("F3");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            StartCoroutine(ResetPlayer());
+        }
+    }
+
+    public IEnumerator ResetPlayer()
+    {
+        resetting = true;
+        GetComponent<Renderer>().material.color = Color.black;
+        rb.velocity = Vector3.zero;
+        Vector3 startPos = transform.position;
+        float resetSpeed = 2f;
+        var i = 0.0f;
+        var rate = 1.0f / resetSpeed;
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            transform.position = Vector3.Lerp(startPos, resetPoint.transform.position, i);
+            yield return null;
+        }
+        GetComponent<Renderer>().material.color = originalColor;
+        resetting = false;
     }
 
     void OnTriggerEnter(Collider other)
