@@ -9,8 +9,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 1;
     int pickupCount;
     int totalPickups;
-    Timer timer;
     bool wonGame = false;
+
+    //Controllers
+    GameController gameController;
+    Timer timer;
 
     [Header("UI")] //adds header in the inspecter
     public GameObject winPanel;
@@ -34,12 +37,17 @@ public class PlayerController : MonoBehaviour
         //pickupCount = totalPickups;
         CheckPickups();
         //Get the timer object
-        timer = FindObjectOfType<Timer>();
-        timer.StartTimer();
+        //timer = FindObjectOfType<Timer>();
+        //timer.StartTimer();
         //turn off our win panel
         //winPanel.SetActive(false);
         //turn on our in game pannel
         inGamePanel.SetActive(true);
+
+        gameController = FindObjectOfType<GameController>();
+        timer = FindObjectOfType<Timer>();
+        if (gameController.gameType == GameType.SpeedRun)
+            StartCoroutine(timer.StartCountdown());
 
         resetPoint = GameObject.Find("Reset Point");
         originalColor = GetComponent<Renderer>().material.color;
@@ -47,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
     void LateUpdate()
     {
+        if (gameController.gameType == GameType.SpeedRun && !timer.IsTiming())
+            return;
+
         if (resetting)
             return;
 
@@ -65,7 +76,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed * Time.deltaTime);
 
         //Get TimerText to show time
-        timerText.text = "Time: " + timer.GetTime().ToString("F3");
+        //timerText.text = "Time: " + timer.GetTime().ToString("F3");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -123,18 +134,21 @@ public class PlayerController : MonoBehaviour
     void WinGame()
     {
         wonGame = true;
-        timer.StopTimer();
+        //timer.StopTimer();
         //Debug.Log("YOU WIN! Time: " + timer.GetTime().ToString("F3"));
         //turn off our in game pannel
         inGamePanel.SetActive(false);
         //Set the timer on the text
-        winTime.text = "Time: " + timer.GetTime().ToString("F3");
+        //winTime.text = "Time: " + timer.GetTime().ToString("F3");
         //Turn on our win panel
         winPanel.SetActive(true);
 
         //Set te velocity of the ridgidbody to zero
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
+
+        if (gameController.gameType == GameType.SpeedRun)
+            timer.StopTimer();
     }
 
     //Temporary - Remove when doing moduals in A2
