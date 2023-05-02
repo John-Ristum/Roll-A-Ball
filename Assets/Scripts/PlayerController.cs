@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     //Controllers
     GameController gameController;
+    SoundController soundController;
     Timer timer;
 
     [Header("UI")] //adds header in the inspecter
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         inGamePanel.SetActive(true);
 
         gameController = FindObjectOfType<GameController>();
+        soundController = FindObjectOfType<SoundController>();
         timer = FindObjectOfType<Timer>();
         if (gameController.gameType == GameType.SpeedRun)
             StartCoroutine(timer.StartCountdown());
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Wall"))
         {
+            soundController.PlayCollisionSound(collision.gameObject);
             if (gameController.wallType == WallType.Punishing)
                 StartCoroutine(ResetPlayer());
         }
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
             //Decriment the pickup count
             pickupCount += 1;
             CheckPickups();
+            soundController.PlayPickupSound();
         }
     }
 
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
         //winTime.text = "Time: " + timer.GetTime().ToString("F3");
         //Turn on our win panel
         winPanel.SetActive(true);
+        soundController.PlayWinSound();
 
         //Set te velocity of the ridgidbody to zero
         rb.velocity = Vector3.zero;
