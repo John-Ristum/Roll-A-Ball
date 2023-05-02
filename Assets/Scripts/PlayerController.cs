@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
         //Get the Rigidbidy component of the gameObject
         rb = GetComponent<Rigidbody>();
         //Get the number of pickups in our scene
-        totalPickups = GameObject.FindGameObjectsWithTag("Pickup").Length;
+        totalPickups = GameObject.FindGameObjectsWithTag("Pickup").Length
+            + GameObject.FindGameObjectsWithTag("Bowling Pin").Length;
         //set pickup count to total
         //pickupCount = totalPickups;
         CheckPickups();
@@ -168,4 +169,9 @@ public class PlayerController : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
+    public void PinFall()
+    {
+        pickupCount += 1;
+        CheckPickups();
+    }
 }

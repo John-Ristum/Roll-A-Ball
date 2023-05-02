@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TiltWorld.unity
     guid: 779229efad30dbe4eb75946eb2f696b9
+  - enabled: 1
+    path: Assets/Scenes/Bowling.unity
+    guid: 418830380e7b8f54fb25761d520052f7
   m_configObjects: {}

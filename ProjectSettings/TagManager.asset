@@ -7,6 +7,7 @@ TagManager:
   - Pickup
   - Ground
   - Wall
+  - Bowling Pin
   layers:
   - Default
   - TransparentFX
