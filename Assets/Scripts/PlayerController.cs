@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
         if (gameController.gameType == GameType.SpeedRun && !timer.IsTiming())
             return;
 
+        if (gameController.controlType == ControlType.WorldTilt)
+            return;
+
         if (resetting)
             return;
 
