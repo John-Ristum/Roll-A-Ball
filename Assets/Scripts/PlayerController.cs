@@ -114,6 +114,7 @@ public class PlayerController : MonoBehaviour
         //If the other object contains the Pickup tag, destroy it
         if(other.CompareTag("Pickup"))
         {
+            other.GetComponent<Particles>().CreateParticles();
             Destroy(other.gameObject);
             //Decriment the pickup count
             pickupCount += 1;

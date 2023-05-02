@@ -15726,6 +15726,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 644139986}
     m_Modifications:
+    - target: {fileID: 7042155974370225417, guid: 1d70b448506f4e34cb1d182c8ca6dee9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.016693115
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042155974370225417, guid: 1d70b448506f4e34cb1d182c8ca6dee9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000000037252903
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042155974370225417, guid: 1d70b448506f4e34cb1d182c8ca6dee9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008344653
+      objectReference: {fileID: 0}
     - target: {fileID: 8137426374816849848, guid: 1d70b448506f4e34cb1d182c8ca6dee9, type: 3}
       propertyPath: m_Name
       value: Outside_Corner_LP
