@@ -17062,6 +17062,10 @@ PrefabInstance:
       propertyPath: inGamePanel
       value: 
       objectReference: {fileID: 952563338}
+    - target: {fileID: 7468725755352211590, guid: d1ee590618e8fb14c8b4ef848deffc78, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae9e2051d27758142a304b68aaa32b3a, type: 2}
     - target: {fileID: 7468725755352211611, guid: d1ee590618e8fb14c8b4ef848deffc78, type: 3}
       propertyPath: m_Name
       value: Player
