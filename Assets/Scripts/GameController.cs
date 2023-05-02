@@ -4,12 +4,14 @@ using UnityEngine;
 
 public enum GameType { Normal, SpeedRun}
 public enum ControlType { Normal, WorldTilt }
+public enum WallType { Normal, Punishing}
 
 public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public GameType gameType;
     public ControlType controlType;
+    public WallType wallType;
 
     private void Awake()
     {
@@ -22,6 +24,15 @@ public class GameController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    //Tot toggle between punishing walls on or off
+    public void ToggleWallType(bool _punishing)
+    {
+        if (_punishing)
+            wallType = WallType.Punishing;
+        else
+            wallType = WallType.Normal;
     }
 
     //Toggles our control type between world tilt and normal

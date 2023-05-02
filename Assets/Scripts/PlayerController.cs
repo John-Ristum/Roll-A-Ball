@@ -88,6 +88,12 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(ResetPlayer());
         }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if (gameController.wallType == WallType.Punishing)
+                StartCoroutine(ResetPlayer());
+        }
     }
 
     public IEnumerator ResetPlayer()
