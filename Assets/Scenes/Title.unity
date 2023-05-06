@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Somehow More Soulless than FIFA
+  m_text: Randomly Generated Game No.206
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4b0464cab5139a45ad9311c187496ca, type: 2}
   m_sharedMaterial: {fileID: -180015539320846748, guid: c4b0464cab5139a45ad9311c187496ca, type: 2}

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         resetPoint = GameObject.Find("Reset Point");
         originalColor = GetComponent<Renderer>().material.color;
+        Time.timeScale = 1;
     }
 
     void LateUpdate()
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ResetPlayer());
         }
 
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Bowling Pin"))
         {
             soundController.PlayCollisionSound(collision.gameObject);
             if (gameController.wallType == WallType.Punishing)
